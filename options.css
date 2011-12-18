@@ -1,0 +1,529 @@
+/**
+ * (R) Roland Siegbert <roland.siegbert@gmail.com>
+ * vimoperate - options.css
+ *
+ * Credit is left where credit is due:
+ *   - ethanschoonover.com
+ *   - yui.yahooapis.com/2.8.1/build/base/base.css
+ *   - camendesign.com/design/
+ *   - praegnanz.de/weblog/htmlcssjs-kickstart
+ *   - html5doctor.com/html-5-reset-stylesheet/
+ *
+ */
+ 
+ 
+ 
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video
+  {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section
+  {
+  display: block;
+}
+
+blockquote,q {
+  quotes: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,select {
+  vertical-align: middle;
+}
+
+/**
+ * Font normalization inspired by YUI Library's fonts.css: developer.yahoo.com/yui/
+ */
+body {
+  font: 16px/1.231 sans-serif;
+  *font-size: small;
+} /* Hack retained to preserve specificity */
+select,input,textarea,button {
+  font: 99% sans-serif;
+}
+
+/** 
+ * en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome 
+ */
+pre,code,kbd,samp {
+  font-family: monospace, sans-serif;
+}
+
+/**
+ * Minimal base styles.
+ */
+
+/* Always force a scrollbar in non-IE */
+html {
+  overflow-y: scroll;
+}
+
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover,a:active {
+  outline: none;
+}
+
+ul,ol {
+  margin-left: 2em;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+/* Remove margins for navigation lists */
+nav ul,nav li {
+  margin: 0;
+  list-style: none;
+  list-style-image: none;
+}
+
+small {
+  font-size: 85%;
+}
+
+strong,th {
+  font-weight: bold;
+}
+
+td {
+  vertical-align: top;
+}
+
+pre {
+  /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px;
+}
+
+textarea {
+  overflow: auto;
+}
+  /* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+.ie6 legend,.ie7 legend {
+  margin-left: -7px;
+}
+
+/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] {
+  vertical-align: text-bottom;
+}
+
+input[type="checkbox"] {
+  vertical-align: bottom;
+}
+
+.ie7 input[type="checkbox"] {
+  vertical-align: baseline;
+}
+
+.ie6 input {
+  vertical-align: text-bottom;
+}
+
+/* Hand cursor on clickable input elements */
+label,input[type="button"],input[type="submit"],input[type="image"],button
+  {
+  cursor: pointer;
+}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button,input,select,textarea {
+  margin: 0;
+}
+
+/* Colors for form validity */
+input:valid,textarea:valid {
+  
+}
+
+input:invalid,textarea:invalid {
+  border-radius: 1px;
+  -moz-box-shadow: 0px 0px 5px red;
+  -webkit-box-shadow: 0px 0px 5px red;
+  box-shadow: 0px 0px 5px red;
+}
+
+.no-boxshadow input:invalid,.no-boxshadow textarea:invalid {
+  background-color: #f0dddd;
+}
+
+/* These selection declarations have to be separate
+   No text-shadow: twitter.com/miketaylr/status/12228805301
+   Also: hot pink! */
+::-moz-selection {
+  background: #FF5E99;
+  color: #fff;
+  text-shadow: none;
+}
+
+::selection {
+  background: #FF5E99;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* j.mp/webkit-tap-highlight-color */
+a:link {
+  -webkit-tap-highlight-color: #FF5E99;
+}
+
+/* Make buttons play nice in IE:
+   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button {
+  width: auto;
+  overflow: visible;
+}
+
+/* Bicubic resizing for non-native sized IMG:
+   code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img {
+  -ms-interpolation-mode: bicubic;
+}
+
+body,select,input,textarea {
+  /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
+  color: #444;
+}
+
+/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
+h1,h2,h3,h4,h5,h6 {
+  font-weight: bold;
+}
+
+a,a:active,a:visited {
+  color: #607890;
+}
+
+a:hover {
+  color: #036;
+}
+
+/**
+ * Primary styles (custom section, non htmlboilerplate)
+ * Author: Ethan Schoonover
+ * With small additions by me (R), checkout ethanschoonover.com for the original file
+ */
+$base03:    #002b36 ;
+$base02:    #073642 ;
+$base01:    #586e75 ;
+$base00:    #657b83 ;
+$base0:     #839496 ;
+$base1:     #93a1a1 ;
+$base2:     #eee8d5 ;
+$base3:     #fdf6e3 ;
+$yellow:    #b58900 ;
+$orange:    #cb4b16 ;
+$red:       #dc322f ;
+$magenta:   #d33682 ;
+$violet:    #6c71c4 ;
+$blue:      #268bd2 ;
+$cyan:      #2aa198 ;
+$green:     #859900 ;
+$fontstack:  "ff-din-web-pro-1 ", "ff-din-web-pro-2 ",sans-serif ;
+$hmargin:    70px ;
+$vmargin:    20px ;
+  /*
+Font Sizing Hack via
+http://html5boilerblate.com and
+http://developer.yahoo.com/yui/fonts/
+=====================================
+target size     Declare this
+in pixels (px)  percent (%)
+10              77
+11              85
+12              93 (was 93)
+13              100
+14              108 (was 107)
+15              116 (was 114)
+16              123.1 (was 122)
+17              131 (was 129)
+18              138.5 (was 136)
+19              146.5 (was 144)
+20              153.9 (was 152)
+21              161.6 (was 159)
+22              167
+23              174
+24              182
+25              189
+26              197
+*/ 
+html * {
+  font-family: $ fontstack;
+}
+
+html>* { //
+  font-size: 123.1%;
+}
+
+p,dt,li { //
+  font-size: 146.5%; //
+  font-size: 153.9%;
+}
+
+p {
+  font-family: $ fontstack;
+  font-weight: lighter;
+  margin: 0 0$vmargin 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  
+}
+
+ol,ul {
+  margin-bottom: $vmargin;
+}
+
+li {
+  margin-bottom: $vmargin/2;
+}
+
+li p { //
+  margin-bottom: $vmargin/5;
+}
+
+li>p:first-of-type { //
+  margin-bottom: $vmargin/2;
+}
+
+li>p:last-of-type { //
+  margin-bottom: $vmargin;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: $hmargin/2;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: $ fontstack;
+  font-weight: lighter;
+  text-transform: capitalize;
+  margin-top: $vmargin*2;
+  margin-bottom: $vmargin;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+
+h2 {
+  border-bottom: 1px solid;
+}
+
+h3,h4,h5,h6 {
+  border-bottom: none;
+}
+
+h1#pagetitle,h1:first-of-type {
+  font-size: 700%; //
+  font-size: 600%;
+  margin-top: 0;
+  margin-bottom: $vmargin;
+  line-height: 100%;
+  border: none;
+  text-decoration: none;
+}
+
+h2#pagesubtitle,h2:first-of-type {
+  font-weight: lighter;
+  font-size: 200%;
+  text-transform: none;
+  color: $base01;
+  margin-top: $vmargin;
+  margin-bottom: $vmargin*2;
+  line-height: 100%;
+  border: none;
+}
+/*
+h1 { font-size: 153.9% }      //26px
+h2 { font-size: 153.9% }      //23px
+h3 { font-size: 146.5% }    //20px
+h4 { font-size: 138.5% }      //18px
+h5 { font-size: 138.5% }      //18px
+h6 { font-size: 138.5% }      //18px
+*/
+h1 {
+  font-size: 153.9%
+}
+
+//26
+px
+h2 {
+  font-size: 153.9%
+}
+
+//23
+px
+h3 {
+  font-size: 146.5%
+}
+
+//20
+px
+h4 {
+  font-size: 138.5%
+}
+
+//18
+px
+h5 {
+  font-size: 138.5%
+}
+
+//18
+px
+h6 {
+  font-size: 138.5%
+}
+
+//18
+px
+img {
+  margin: 0 0$vmargin 0;
+}
+
+header { //
+  font-size: 123.1%;
+  line-height: 190%; a { text-decoration : none;
+  margin-right: 10px;
+}
+
+}
+footer {
+  padding-left: $hmargin; //
+  background-color: $base02;
+  line-height: 200%; //
+  position: absolute; //
+  bottom: 0;
+  padding-right: 1em;
+}
+
+section {
+  display: block;
+  text-align: center; //
+  min-width: 32em;
+  max-width: 52em;
+  }
+
+#sitelink {
+  display: block;
+  float: left;
+  width: $hmargin-  10px;
+  padding-left: 10px;
+}
+
+pre {
+  margin-bottom: $vmargin;
+}
+
+pre,code {
+  font-family: monospace;
+}
+
+table {
+  font-size: 75%;
+}
+
+th {
+  padding-bottom: .7em;
+  padding-right: 1.8em;
+}
+
+td {
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: .2em;
+  padding-right: 1.8em;
+}
+
+td.nums {
+  
+}
+
+h2#download+h3 {
+  font-weight: bold;
+  text-decoration: none;
+  padding-left: 70px;
+  background-repeat: no-repeat;
+  background-position: left;
+  height: 60px;
+  display: block;
+  line-height: 60px;
+  background-image: url("/img/download-base00.png");
+  color: red;
+}
+
+/**
+  *
+  * 
+  
+header img {
+  float: left;
+  margin-top: 10px;
+}
+
+header h1,header h2,header p {
+  margin-left: 100px;
+}
+
+section {
+  display: block;
+  clear: both;
+}
+
+footer {
+  display: block;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+h2 {
+  margin-top: -3px;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+h3 {
+  margin-bottom: 0;
+  margin-top: 25px;
+}
+
+ *
+ *
+ */
