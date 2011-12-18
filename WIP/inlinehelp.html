@@ -1,0 +1,123 @@
+<!--
+  Shown, when asking for help.
+  Thank you vimium!
+-->
+<div id="HelpDialog">
+  <style>
+    #HelpDialog * {
+      font-size:11px;
+      line-height:130%;
+      color:black;
+      background-color:transparent;
+    }
+    
+    #HelpDialog {
+      text-align:left;
+      border:3px solid red;
+      opacity:0.92;
+      background-color:#eee;
+      position:fixed;
+      width:600px;
+      font-family:helvetica, arial, sans;
+      border:2px solid #b3b3b3;
+      border-radius:6px;
+      padding:8px 12px;
+      width:640px;
+      left:50%;
+      /* This needs to be 1/2 width to horizontally center the help dialog */
+      margin-left:-320px;
+      top:50px;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 6px;
+      z-index:99999998;
+    }
+    
+    #HelpDialog a { color:red; }
+    #title, #title * { font-size:20px; }
+    .column {
+      width:50%;
+      float:left;
+    }
+    
+    .column table, .column td, .column tr { padding:0; margin:0; }
+    .column table { width:100%; table-layout:auto; }
+    .column td { vertical-align:top; padding:1px; }
+    #HelpDialog .column tr > td:first-of-type {
+      text-align:right;
+      font-weight:bold;
+      color:#2f508e;
+      white-space:nowrap;
+    }
+    
+    /* Make the description column as wide as it can be. */
+    #HelpDialog .column tr > td:nth-of-type(3) { width:100%; }
+    #HelpDialog .divider {
+      height:1px;
+      width:92%;
+      margin:10px auto;
+      background-color:#9a9a9a;
+    }
+    
+    #HelpDialog .sectionTitle {
+      font-weight:bold;
+      padding-top:3px;
+    }
+    
+    #HelpDialog .commandName { font-family:"courier new"; }
+
+    #HelpDialog .close {
+      position:absolute;
+      right:10px;
+      top:5px;
+      font-family:"courier new";
+      font-weight:bold;
+      color:#990000;
+      text-decoration:none;
+      padding-left:10px;
+      font-size:16px;
+    }
+
+    #HelpDialog .closeButton:hover {
+      color:black;
+      cursor:default;
+      -webkit-user-select:none;
+    }
+    
+    #HelpDialogFooter { position: relative; }
+    #HelpDialogFooter * { font-size:10px; }
+  </style>
+
+  <a class="close" href="#">CLOSE (X)</a>
+  <div id="title">Vim<span style="color:red">Opera</span>tor</div>
+  <div class="column">
+    <table>
+      <tr><td></td><td></td><td class="sectionTitle">Navigating the page</td></tr>
+      {{pageNavigation}}
+    </table>
+  </div>
+  <div class="column">
+    <table>
+      <tr><td></td><td></td><td class="sectionTitle">Using find</td></tr>
+      {{findCommands}}
+      <tr><td></td><td></td><td class="sectionTitle">Navigating history</td></tr>
+      {{historyNavigation}}
+      <tr><td></td><td></td><td class="sectionTitle">Manipulating tabs</td></tr>
+      {{tabManipulation}}
+      <tr><td></td><td></td><td class="sectionTitle">Miscellaneous</td></tr>
+      {{misc}}
+    </table>
+  </div>
+
+  <br clear="both"/>
+  <div class="divider"></div>
+
+  <div id="HelpDialogFooter">
+    <div class="column">
+        <a href=#TOCOME target="_blank">Feedback, Comments?</a>
+<!--        Kudos to the guys from <a href=http://github.com/philc/vimium" href="_blank">vimium</a> for the inspiration and linkhinting!
+-->
+    </div>
+    <div class="column" style="text-align:right">
+      <span>Version 0.1</span><br/>
+    </div>
+  </div>
+</div>

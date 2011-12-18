@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+	var toolbar;
+	var button;
+	var toolbarUIItemProperties;
+	
+    window.addEventListener("load", function(){
+	   	if (widget.preferences.hotkey == undefined)
+		{
+			widget.preferences.from = "auto";
+			widget.preferences.to = "ru";
+			widget.preferences.enabled = "true";
+			widget.preferences.button = "true";
+			widget.preferences.balloon = "true";
+			widget.preferences.redbutton = "false";
+			widget.preferences.hotkeyon = "false";
+			widget.preferences.hotkey = JSON.stringify({
+				ctrlKey: true,
+				altKey: true,
+				shiftKey: false,
+				fkey: false,
+				keyCode: 116
+			});
+		}
+	   
+        toolbarUIItemProperties = {
+            title: "VimOperate",
+            icon: "icons/vim_red_18.png",
+            onclick: function() { return false;},
+            popup: {
+                href: "popup.html",
+                width: 260,
+                height: 400
+            }
+        };
+		button = opera.contexts.toolbar.createItem(toolbarUIItemProperties);
+        toolbar = opera.contexts.toolbar;
+                
+		if (widget.preferences.button == "true")
+		{			
+			toolbar.addItem(button);
+		}
+    
+				
+        //Work through messages:
+        opera.extension.onmessage = function(e) {
+            msg = e.data;
+            opera.postError("fuck");
+            opera.postError("VimOperate: "+msg);            
+            switch(msg) {
+                case 'help': 
+                    if(opera.extension.tabs.getFocused())
+                    opera.extension.tabs.getFocused().postMessage({
+                        type: 'notice',
+                        content: Popup.notice('title','text')
+                    });
+                    break;
+                case 'createTab':
+                    opera.extension.tabs.create();
+                    break;
+                case 'createWindow':
+                    opera.extension.windows.create();
+                    break;
+            }
+        };}, false);
+        
+        
+        /*
+		opera.extension.onconnect = function(event){
+			//opera.postError("sent message to injected script");
+			// Convert the settings into a literal object
+			litobj = {};
+			litobj['makelinks_action'] = 'settings';
+			for (var i=0; i<widget.preferences.length; i++) {
+				key = widget.preferences.key(i);						
+				litobj[key] = widget.preferences.getItem(key);
+			}	
+			event.source.postMessage(litobj);
+		};
+	  
+	  opera.extension.onmessage = function(event){
+			//opera.postError("sent message to injected script");
+			litobj = {};
+			litobj['makelinks_action'] = event.data.msg;
+			ajax(event.data.text, litobj, event.source);
+		}
+	}, false);
+	  
+	  function ajax(url, msg, port)
+	  {
+	    var xmlhttp = new window.XMLHttpRequest();	
+		xmlhttp.onreadystatechange = function() {
+		  if (xmlhttp.readyState == 4) {
+			 opera.postError(xmlhttp.responseText);
+			 msg.result = JSON.parse(xmlhttp.responseText);
+			 port.postMessage(msg);
+		  }
+		};
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send(null);
+	  }
+	  
+	  function doTranslate()
+	  {
+			litobj = {};
+			litobj.makelinks_action = 'force';
+			opera.extension.broadcastMessage(litobj);
+	  }
+	  */
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
