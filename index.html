@@ -47,9 +47,9 @@
         //Work through messages:
         opera.extension.onmessage = function(e) {
             msg = e.data;
-            opera.postError("fuck");
+            msgArray = msg.split('|');
             opera.postError("VimOperate: "+msg);            
-            switch(msg) {
+            switch(msg[0]) {
                 case 'help': 
                     if(opera.extension.tabs.getFocused())
                     opera.extension.tabs.getFocused().postMessage({
@@ -58,11 +58,17 @@
                     });
                     break;
                 case 'createTab':
-                    opera.extension.tabs.create();
+                  	if (len(msgArray)>1) {
+                  	  opera.extension.tabs.create(msgArray[1]);
+                  	}
+                  	else {
+                  	  opera.extension.tabs.create(); 
+                  	}
                     break;
                 case 'createWindow':
                     opera.extension.windows.create();
                     break;
+                
             }
         };}, false);
         
