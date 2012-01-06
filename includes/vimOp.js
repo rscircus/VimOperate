@@ -27,8 +27,8 @@
  * 
  * TODOs:
  * ======
- * TODO: Open link in new tab
- * TODO: options 
+ * DONE: Open link in new tab
+ * DONE: options 
  * TODO: Google handling
  * 
  */
@@ -36,41 +36,18 @@
 
 var isHelpVisible = false;
 var previousKeyCode = 0; 
+var settingsStorage = widget.preferences;
 var settings = {
-	values : {},
-	get : function(key) {
-		return this.values[key];
-	},
-	set : function(key, value) {
-		this.values[key] = value;
-	}
-};
-var keyCodes = { 
-  ESC: 27, 
-  backspace: 8, 
-  deleteKey: 46,
-  ESC: 27,
-  Up: 38,
-  k: 75,
-  Down: 40,
-  j: 74,
-  Left: 37,
-  h: 72,
-  Right: 39,
-  l: 76,
-  questionmark: 191,
-  f: 70,
-  g: 71,
-  t: 84,
-  d: 68,
-  u: 85,
-  r: 82,
-  w: 87,
+  excludedURLs:
+    "http*://mail.google.com/*\n" +
+    "http*://www.google.com/reader/*\n",
+  scrollStepLarge: 100,
+  scrollStepSmall: 20
 };
 
-// Initilize defaults:
-settings.set("scrollStep", 100);
-
+settings.scrollStepLarge = typeof(settingsStorage.scrollStepLarge) != 'undefined' ? settingsStorage.scrollStepLarge : settings.scrollStepLarge;
+settings.scrollStepSmall = typeof(settingsStorage.scrollStepSmall) != 'undefined' ? settingsStorage.scrollStepSmall : settings.scrollStepSmall;
+settings.excludedURLs = typeof(settingsStorage.excludedURLs) != 'undefined' ? settingsStorage.excludedURLs : settings.excludedURLs;
 
 /**
  * Controlling the keydown events and launching the appropriate action/service.
@@ -78,12 +55,15 @@ settings.set("scrollStep", 100);
 window.addEventListener("keydown", function(e) {
 
 	log("KeyDown Event firing: " + e.keyCode);
+	
+	// Exit if excluded URL
+	if(isExcludedUrl(window.location.href, settings.excludedURLs))
+	  return;
 
 	// Exit if insertMode!
-	if (document.activeElement && isEditable(document.activeElement)) {
-		log("InsertMode");
+	if (document.activeElement && isEditable(document.activeElement))
 		return;
-	}
+
 
 	// ESC
 	if (e.keyCode == keyCodes.ESC) {
@@ -96,22 +76,23 @@ window.addEventListener("keydown", function(e) {
 
 	// Up (UpArrow or k)
 	if (e.keyCode == keyCodes.Up || e.keyCode == keyCodes.k) {
-		window.scrollBy(0, -1 * settings.get("scrollStep"));
+		window.scrollBy(0, -1 * settings.scrollStepLarge);
 	}
 
 	// Down (DownArrow or j)
 	if (e.keyCode == keyCodes.Down || e.keyCode == keyCodes.j) {
-		window.scrollBy(0, settings.get("scrollStep"));
+		window.scrollBy(0, settings.scrollStepLarge);
+		log('down');
 	}
 
 	// Left (LeftArrow or h)
 	if (e.keyCode == keyCodes.Left || e.keyCode == keyCodes.h) {
-		window.scrollBy(-1 * settings.get("scrollStep") / 2, 0);
+		window.scrollBy(-1 * settings.scrollStepLarge / 2, 0);
 	}
 
 	// Right (RightArrow or l)
 	if (e.keyCode == keyCodes.Right || e.keyCode == keyCodes.l) {
-		window.scrollBy(settings.get("scrollStep") / 2, 0);
+		window.scrollBy(settings.scrollStepLarge / 2, 0);
 	}
 
 	// ?
@@ -123,6 +104,12 @@ window.addEventListener("keydown", function(e) {
 	if (e.keyCode == keyCodes.f) {
 		activateLinkHintsMode();
 		linkHintsModeActivated = true;
+	}
+	
+	// F
+	if (e.keyCode == keyCodes.f && e.shiftKey) {
+	  activateLinkHintsMode(true);
+	  linkHintsModeActivated = true;
 	}
 
 	// G

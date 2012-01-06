@@ -1,5 +1,32 @@
-/*
- * Kudos to the vimium project!
+/**
+ * Mothers of this code:
+ * =====================
+ * Vimium-guys, especially philc
+ * Roland Siegbert <roland.siegbert@gmail.com> 
+ * Powered by unicorns living on colorful rainbows!
+ * 
+ * 
+ * Special thanks go to:
+ * =====================
+ * 
+ * Vimium:
+ * -------
+ * Kudos to the vimium project! Actually this is my very first js program 
+ * I ever wrote and most of the R&D was done there and I ported it to Opera,
+ * while learning the bits and pieces of js, Opera and the DOM.
+ * 
+ * I learned a lot from the code below!
+ * 
+ * 
+ * Opera-Community and Devs:
+ * -------------------------
+ * For paciently answering my questions.
+ * 
+ *  
+ * Thanks go to:
+ * =============
+ * Vimium - The hacker's browser - http://vimium.github.com/
+ * Quirksmode - http://quirksmode.org/
  * 
  */
 
@@ -22,13 +49,15 @@ var linkHintsCss =
   '}';
 
 var hintMarkers = [];
-var hintCharacters = "asdfjkl";
+var hintCharacters = "fjdkslaghbnmv";
 var hintKeystrokeQueue = [];
+var newTab = false;
 var linkHintsModeActivated = false;
 var linkHintsCssAdded = false;
 var clickableElementsXPath = "//a | //textarea | //button | //select | //input[not(@type='hidden')]";
 
-function activateLinkHintsMode() {
+function activateLinkHintsMode(pNewTab) {
+  newTab = pNewTab || false;
   if (!linkHintsCssAdded)
     addCssToPage(linkHintsCss);
   linkHintsModeActivated = true;
@@ -205,7 +234,10 @@ function numberToHintString(number) {
 
 function simulateClick(link) {
   var event = document.createEvent("MouseEvents");
-  event.initMouseEvent("click", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+  if(newTab)
+    event.initMouseEvent("click", true, true, window, 1, 0, 0, 0, 0, false, false, true, false, 0, null);
+  else
+    event.initMouseEvent("click", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
   // Debugging note: Firefox will not execute the link's default action if we dispatch this click event,
   // but Webkit will. Dispatching a click on an input box does not seem to focus it; we do that separately
   link.dispatchEvent(event);
@@ -250,9 +282,6 @@ function addMarkerFor(link, linkHintNumber) {
   return marker;
 }
 
-/*
- * Adds the given CSS to the page. TODO: This may belong in the core vimium frontend.
- */
 function addCssToPage(css) {
   var head = document.getElementsByTagName("head")[0];
   if (!head) {

@@ -27,7 +27,7 @@
  * 
  */
 
-var storage = widget.preferences;
+var settingsStorage = widget.preferences;
 var defaultSettings = {
   excludedURLs:
     "http*://mail.google.com/*\n" +
@@ -43,18 +43,18 @@ var scrollStepSmall = document.getElementById("scrollStepSmall");
 
 //Track changes
 excludedURLs.addEventListener('change', function(){
-  storage.excludedURLs = this.value;
+  settingsStorage.excludedURLs = this.value;
 }, false);
 
 scrollStepLarge.addEventListener('change', function() {
-  storage.scrollStepLarge = this.value;
+  settingsStorage.scrollStepLarge = this.value;
 }, false);
 
 scrollStepSmall.addEventListener('change', function() {
-  storage.scrollStepSmall = this.value; 
+  settingsStorage.scrollStepSmall = this.value; 
 }, false);
 
 //Set Defaults
-excludedURLs.value = storage.excludedURLs || defaultSettings.excludedURLs;
-scrollStepLarge.value = storage.scrollStepLarge || defaultSettings.scrollStepLarge;
-scrollStepSmall.value = storage.scrollStepSmall || defaultSettings.scrollStepSmall;
+excludedURLs.value = settingsStorage.excludedURLs || defaultSettings.excludedURLs;
+scrollStepLarge.value = settingsStorage.scrollStepLarge || defaultSettings.scrollStepLarge;
+scrollStepSmall.value = settingsStorage.scrollStepSmall || defaultSettings.scrollStepSmall;
