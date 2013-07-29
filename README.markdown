@@ -62,3 +62,8 @@ Additional advanced browsing commands:
     gu      go up one level in the URL hierarchy
     zH      scroll all the way left
     zL      scroll all the way right
+
+License
+-------
+
+See MIT-LICENSE.txt for details.
